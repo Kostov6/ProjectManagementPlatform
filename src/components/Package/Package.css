@@ -1,0 +1,16 @@
+.Package-packageRow{
+    margin-top: 0.75rem;
+}
+
+.Package-package{
+    height: 100px;
+    background-color: hsl(36, 100%, 80%);
+    border: solid 1px black;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Package-package > div {
+    font-size: 20px;
+}

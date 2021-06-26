@@ -1,0 +1,23 @@
+.PackagesContainer-outerContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.PackageContainer-calendar{
+    width: 900px;
+}
+
+.PackageContainer-labelContainer{
+    width: 100%;
+    text-align: center;
+}
+
+
+.PackageContainer-labelContainer > div {
+    width: 75px;
+    font-size: 22px;
+    display: inline-block;
+    border-left: solid 1px gray;
+    border-right: solid 1px gray;
+}
+

@@ -1,0 +1,75 @@
+.Task-card{
+    width: 400px;
+}
+
+.Task-card-chip > img {
+    position:initial;
+    margin:0;
+}
+
+.Task-card-chip{
+    margin:0 12px 0 0;
+    padding:0;
+}
+
+.Task-chip-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items:center
+}
+
+.Task-card-chip > span{
+    display:none;
+}
+
+.Task-card-chip:hover > span{
+    display:inline;
+    padding: 0 12px 0 8px;
+}
+
+.Task-deadline > i {
+    position: relative;
+    top: 3px;
+    font-size: 1em;
+    margin-right: 12px;
+}
+
+.Task-deadline {
+    font-size: 1.4em;
+}
+
+.Task-completed-by{
+    background-color: lightgreen;
+}
+
+.Task-deadlineBreached {
+    font-size: 1.4em;
+    color: red
+}
+
+.Task-todo{
+    color:black
+}
+
+
+.Task-underWork{
+    color: orange;
+    font-weight: bold;
+}
+
+.Task-done{
+    color: green;
+    font-weight: bold;
+}
+
+.Task-buttonRow{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-top: 1rem;
+}
+
+.Task-next-done{
+    display: none;
+}
+
