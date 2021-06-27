@@ -33,7 +33,7 @@ function Task({taskId, descr, title, deadline, subtasks, onTaskClick, subtaskOrd
                     }
                     <div className="Task-card-chip Task-completed-by chip">
                         <img src="img/yuna.jpg" alt="Contact Person" />
-                        <span >Wiktor Kostov</span>
+                        <span >Wiktor Kostovv</span>
                         
                     </div>
 
