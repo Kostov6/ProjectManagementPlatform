@@ -6,7 +6,13 @@ const mockTasks = {
             descr: "Todo 1",
             title: "First todo",
             deadline: "5 April 2021",
-            nextPhase: "underWork"
+            nextPhase: "underWork",
+            participants: [
+                {
+                    name: "Peshko",
+                    voted: true
+                }
+            ]
         },
         {
             id: 3,
@@ -32,7 +38,13 @@ const mockTasks = {
                 }
             ],
             subtaskOrdered: true,
-            nextPhase: "unmetConditions"
+            nextPhase: "unmetConditions",
+            participants: [
+                {
+                    name: "Peshko",
+                    voted: false
+                }
+            ]
         }
     ],
     underWork: [
@@ -41,7 +53,13 @@ const mockTasks = {
             descr: "Descr 4",
             title: "Task 4",
             deadline: "8 April 2021",
-            nextPhase: "done"
+            nextPhase: "done",
+            participants: [
+                {
+                    name: "Peshko",
+                    voted: true
+                }
+            ]
         },
         {
             id: 5,
@@ -61,7 +79,13 @@ const mockTasks = {
                 }
             ],
             subtaskOrdered: false,
-            nextPhase: "unmetConditions"
+            nextPhase: "unmetConditions",
+            participants: [
+                {
+                    name: "Peshko",
+                    voted: false
+                }
+            ]
         }
     ],
     done: [
@@ -70,7 +94,13 @@ const mockTasks = {
             descr: "Descr 2", 
             title: "Task 2", 
             deadline: "6 April 2021",
-            nextPhase: "end"
+            nextPhase: "end",
+            participants: [
+                {
+                    name: "Peshko",
+                    voted: false
+                }
+            ]
         }
     ]
 

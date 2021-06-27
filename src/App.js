@@ -8,7 +8,7 @@ export default class App extends Component {
         return (
             <React.Fragment>
                 <h1>Component testing</h1>
-                <PackagesContainer />
+                <TasksContainer />
             </React.Fragment>
         )
     }

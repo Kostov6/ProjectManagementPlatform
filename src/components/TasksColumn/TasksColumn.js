@@ -8,7 +8,7 @@ function TaskColumn({columnType,tasksList,...rest}) {
         <div className="TasksColumn">
             <h2>{columnType}</h2>
             {
-                tasksList.map(task => (<Task key={task.id} taskId={task.id} descr={task.descr} title={task.title} deadline={task.deadline} subtasks={task.subtasks} subtaskOrdered={task.subtaskOrdered} nextPhase={task.nextPhase}{...rest} />))
+                tasksList.map(task => (<Task key={task.id} taskId={task.id} descr={task.descr} title={task.title} deadline={task.deadline} subtasks={task.subtasks} subtaskOrdered={task.subtaskOrdered} nextPhase={task.nextPhase} participants={task.participants} {...rest} />))
             }
         </div>
     )

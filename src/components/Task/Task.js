@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Task.css'
 
-function Task({taskId, descr, title, deadline, subtasks, onTaskClick, subtaskOrdered,nextPhase}) {
+function Task({taskId, descr, title, deadline, subtasks, onTaskClick, subtaskOrdered, nextPhase, participants}) {
     return (
         <div className="Task-card card">
 
@@ -23,15 +23,15 @@ function Task({taskId, descr, title, deadline, subtasks, onTaskClick, subtaskOrd
                     {deadline}<i className="tiny material-icons">access_alarm</i>
                 </div>
                 <div className="Task-chip-container">
+                    {
+                        participants.map(participant => (
+                            <div className={`Task-card-chip ${participant.voted?"Task-completed-by":""} chip`}>
+                                <img src="img/yuna.jpg" alt="Contact Person" />
+                                <span >{participant.name}</span>
+                            </div>
+                        ))
+                    }
                     <div className="Task-card-chip Task-completed-by chip">
-                        <img src="img/yuna.jpg" alt="Contact Person" />
-                        <span >Wiktor Kostov</span>
-                    </div>
-                    <div className="Task-card-chip chip">
-                        <img src="img/yuna.jpg" alt="Contact Person" />
-                        <span >Wiktor Kostov</span>
-                    </div>
-                    <div className="Task-card-chip chip">
                         <img src="img/yuna.jpg" alt="Contact Person" />
                         <span >Wiktor Kostov</span>
                     </div>
@@ -66,6 +66,7 @@ Task.propTypes = {
     title: PropTypes.string.isRequired,
     deadline: PropTypes.string.isRequired,
     nextPhase: PropTypes.string.isRequired,
+    participants: PropTypes.array,
     subtasks: PropTypes.array,
     subtaskOrdered: PropTypes.bool
 }
