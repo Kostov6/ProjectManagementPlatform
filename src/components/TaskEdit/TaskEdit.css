@@ -1,7 +1,34 @@
 .TaskEdit-h1{
     margin: 0rem;
     margin-bottom: 2rem;
-    background-color: greenyellow;
     color:white;
     font-weight: bold;
+}
+
+.TaskEdit-add{
+    background-color: greenyellow;
+}
+
+.TaskEdit-edit{
+    background-color: lightskyblue;
+
+}
+
+.subtaskAdd{
+    color:greenyellow;
+    margin-left: -0.5rem
+}
+.TaskEdit-removeSubtask{
+    position: relative;
+    top: 3px;
+    font-size: 1.5rem;
+    margin-right: 12px;
+}
+
+.TaskEdit-subtaskHeader{
+    margin-top: 0px;
+}
+
+.TaskEdit_delete{
+    margin-left: 15rem;
 }

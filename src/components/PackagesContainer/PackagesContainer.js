@@ -12,24 +12,25 @@ export default class PackagesContainer extends Component {
         return (
             <div className="PackagesContainer-outerContainer">
                 <div className="PackageContainer-calendar">
+                    <h3>{new Date().getFullYear()}</h3>
                     <div className="PackageContainer-labelContainer">
-                        <div>Jan 21</div>
                         <div>Jan</div>
-                        <div>Jan</div>
-                        <div>Jan</div>
-                        <div>Jan</div>
-                        <div>Jan</div>
-                        <div>Jan</div>
-                        <div>Jan</div>
-                        <div>Jan</div>
-                        <div>Jan</div>
-                        <div>Jan</div>
-                        <div>Jan</div>
+                        <div>Feb</div>
+                        <div>Mar</div>
+                        <div>Apr</div>
+                        <div>May</div>
+                        <div>Jun</div>
+                        <div>Jul</div>
+                        <div>Aug</div>
+                        <div>Sep</div>
+                        <div>Oct</div>
+                        <div>Nov</div>
+                        <div>Dec</div>
                     </div>
                     <div>
-                        <Package title="Package #1" packageWidth="150px" leftProgression="75px" />
-                        <Package title="Package #2" packageWidth="375px" leftProgression="188px" />
-                        <Package title="Package #3" packageWidth="175px" leftProgression="225px" />
+                        <Package title="Package #1" startDateString="1 Feb 2021" endDateString="31 Mar 2021"/>
+                        <Package title="Package #2" startDateString="15 Mar 2021" endDateString="15 Aug 2021"/>
+                        <Package title="Package #3" startDateString="1 Apr 2021" endDateString="10 Jun 2021"/>
                     </div>
                 </div>
             </div>

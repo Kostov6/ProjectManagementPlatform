@@ -1,0 +1,33 @@
+nav{
+    background-color: white;
+
+}
+
+nav .brand-logo{
+    color: #000;
+    margin-left: 3rem;
+}
+
+.ProjectOverview_star{
+    color:yellow;
+}
+
+.Participants-chip-container{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items:center
+}
+
+li{
+    color:black
+}
+
+
+.inviteButton{
+    color:greenyellow;
+    margin-top: -0.5rem;
+    margin-left: 0.5rem
+}

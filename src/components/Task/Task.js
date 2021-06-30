@@ -25,8 +25,8 @@ function Task({taskId, descr, title, deadline, subtasks, onTaskClick, subtaskOrd
                 <div className="Task-chip-container">
                     {
                         participants.map(participant => (
-                            <div className={`Task-card-chip ${participant.voted?"Task-completed-by":""} chip`}>
-                                <img src="img/yuna.jpg" alt="Contact Person" />
+                            <div key={participant.name} className={`Task-card-chip ${participant.voted?"Task-completed-by":""} chip`}>
+                                <img src="img/office.jpg" alt="Contact Person" />
                                 <span >{participant.name}</span>
                             </div>
                         ))

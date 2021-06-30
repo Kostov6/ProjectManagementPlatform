@@ -1,0 +1,19 @@
+.PackageEdit-h1{
+    margin: 0rem;
+    margin-bottom: 2rem;
+    color:white;
+    font-weight: bold;
+}
+
+.PackageEdit-add{
+    background-color: greenyellow;
+}
+
+.PackageEdit-edit{
+    background-color: lightskyblue;
+
+}
+
+.PackageEdit_delete{
+    margin-left: 12rem;
+}
