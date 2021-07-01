@@ -4,7 +4,7 @@
 
 .Package-package{
     height: 100px;
-    background-color: hsl(36, 100%, 80%);
+    background-color: lightskyblue;
     border: solid 1px black;
     display:flex;
     justify-content: center;
@@ -13,4 +13,9 @@
 
 .Package-package > div {
     font-size: 20px;
+}
+
+.Package_title{
+    color:white;
+    font-weight: bold;
 }

@@ -31,3 +31,16 @@ li{
     margin-top: -0.5rem;
     margin-left: 0.5rem
 }
+
+.PO_sidebar{
+    color: black;
+}
+.PO_packageView{
+    color:#4fc3f7 
+}
+.PO_taskView{
+    color:#26a69a 
+}
+.PO_taskAdd{
+    color:greenyellow 
+}

@@ -34,7 +34,7 @@ function Package({title, startDateString, endDateString}) {
     return (
         <div className="Package-packageRow">
             <div className="Package-package" style={{ width: getPackageWidth(), marginLeft: getLeftProgression() }}>
-                <div>{title}</div>
+                <div className="Package_title">{title}</div>
             </div>
         </div>
     )

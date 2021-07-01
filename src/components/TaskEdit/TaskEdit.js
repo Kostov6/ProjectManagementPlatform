@@ -61,74 +61,76 @@ export default class TaskEdit extends Component {
 
     render() {
         return (        
-        <div className="Task-card card">
-            <div className="card-content waves-effect waves-block waves-light">
-                <h1 className={"TaskEdit-h1 "+ (this.props.type === "Add task" ? "TaskEdit-add" : "TaskEdit-edit")}>{this.props.type || "Edit task"}</h1>
-                <div className="row">
-                    <div className="input-field col s12">
-                        <input id="taskTitle" type="text" className="validated" value={this.state.taskTitle} onChange={this.handleInputChange}/>
-                        <label htmlFor="TaskName" className="active">Task title</label>
-                    </div>
+        <div className="TaskEdit_outerContainer">
+            <div className="Task-card card">
+                <div className="card-content waves-effect waves-block waves-light">
+                    <h1 className={"TaskEdit-h1 "+ (this.props.type === "Add task" ? "TaskEdit-add" : "TaskEdit-edit")}>{this.props.type || "Edit task"}</h1>
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <input id="taskTitle" type="text" className="validated" value={this.state.taskTitle} onChange={this.handleInputChange}/>
+                            <label htmlFor="TaskName" className="active">Task title</label>
+                        </div>
 
-                    <div className="input-field col s12">
-                        <input id="taskDeadline" type="text" className="validated" value={this.state.taskDeadline} onChange={this.handleInputChange}/>
-                        <label htmlFor="TaskName" className="active">Task deadline</label>
-                    </div> 
+                        <div className="input-field col s12">
+                            <input id="taskDeadline" type="text" className="validated" value={this.state.taskDeadline} onChange={this.handleInputChange}/>
+                            <label htmlFor="TaskName" className="active">Task deadline</label>
+                        </div> 
 
-                    <div className="input-field col s12">
-                        <textarea id="taskDescr" className="materialize-textarea" value={this.state.taskDescr} onChange={this.handleInputChange}></textarea>
-                        <label htmlFor="taskDescr" className="active">Task description</label>
-                    </div>
+                        <div className="input-field col s12">
+                            <textarea id="taskDescr" className="materialize-textarea" value={this.state.taskDescr} onChange={this.handleInputChange}></textarea>
+                            <label htmlFor="taskDescr" className="active">Task description</label>
+                        </div>
 
-                
-                    <div className="input-field col s12 TaskEdit-subtaskHeader">
-                        <h5 className="TaskEdit-subtaskHeader">Subtasks:</h5>   
-                        {
-                            this.state.subTasks.map(subTask => (
-                                <div key={subTask}>
-                                    <i subtask={subTask} className="material-icons TaskEdit-removeSubtask" onClick={this.handleRemoveSubtask}>delete</i>
-                                    <span>{subTask}</span>
-                                </div>
-                            ))
-                        }
-                    </div>
-
-                    <div className=" input-field col s12">
-                        <i className="material-icons prefix subtaskAdd" onClick={this.handleAddSubtask}>add_circle</i>
-                        <input id="icon_prefix" type="text" className="validate" />
-                        <label htmlFor="icon_prefix">New subtask</label>
-                    </div>
-
-                    {
-                        this.state.allUsers.map((user,index) => 
-                            (
-                                <div key={user} className="input-field col s6" >
-                                    <label>
-                                        <input type="checkbox" id={user} checked={this.state.participants[index]} onChange={this.handleInputChange} />
-                                        <span>{user}</span>
-                                    </label>
-                                </div>
-                            )
-                        )
-                    }
                     
-                </div>
-            
-            </div>
+                        <div className="input-field col s12 TaskEdit-subtaskHeader">
+                            <h5 className="TaskEdit-subtaskHeader">Subtasks:</h5>   
+                            {
+                                this.state.subTasks.map(subTask => (
+                                    <div key={subTask}>
+                                        <i subtask={subTask} className="material-icons TaskEdit-removeSubtask" onClick={this.handleRemoveSubtask}>delete</i>
+                                        <span>{subTask}</span>
+                                    </div>
+                                ))
+                            }
+                        </div>
 
-            <div className="row">
-            {
-                this.props.type === "Edit task" ? (
-                    <div className="input-field col s12">
-                        <a className="waves-effect waves-light btn">Add</a>
+                        <div className=" input-field col s12">
+                            <i className="material-icons prefix subtaskAdd" onClick={this.handleAddSubtask}>add_circle</i>
+                            <input id="icon_prefix" type="text" className="validate" />
+                            <label htmlFor="icon_prefix">New subtask</label>
+                        </div>
+
+                        {
+                            this.state.allUsers.map((user,index) => 
+                                (
+                                    <div key={user} className="input-field col s6" >
+                                        <label>
+                                            <input type="checkbox" id={user} checked={this.state.participants[index]} onChange={this.handleInputChange} />
+                                            <span>{user}</span>
+                                        </label>
+                                    </div>
+                                )
+                            )
+                        }
+                        
                     </div>
-                ) : (
-                    <div className="input-field col s12">
-                        <a className="waves-effect waves-light btn">Edit</a>
-                        <a className="waves-effect waves-light btn red TaskEdit_delete">Delete</a>
-                    </div>
-                )
-            }
+                
+                </div>
+
+                <div className="row">
+                {
+                    this.props.type === "Edit task" ? (
+                        <div className="input-field col s12">
+                            <a className="waves-effect waves-light btn">Add</a>
+                        </div>
+                    ) : (
+                        <div className="input-field col s12">
+                            <a className="waves-effect waves-light btn">Edit</a>
+                            <a className="waves-effect waves-light btn red TaskEdit_delete">Delete</a>
+                        </div>
+                    )
+                }
+                </div>
             </div>
         </div>
         )

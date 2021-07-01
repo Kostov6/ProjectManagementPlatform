@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import PropTypes from 'prop-types'
 import "./PackagesContainer.css"
 import Package from '../Package/Package'
@@ -28,9 +29,12 @@ export default class PackagesContainer extends Component {
                         <div>Dec</div>
                     </div>
                     <div>
-                        <Package title="Package #1" startDateString="1 Feb 2021" endDateString="31 Mar 2021"/>
+                        <Link to="/packageEdit"><Package title="Package #1" startDateString="1 Feb 2021" endDateString="31 Mar 2021"/></Link>
                         <Package title="Package #2" startDateString="15 Mar 2021" endDateString="15 Aug 2021"/>
                         <Package title="Package #3" startDateString="1 Apr 2021" endDateString="10 Jun 2021"/>
+                    </div>
+                    <div className="PackagesContainer-outerContainer">
+                        <Link to="/packageAdd" className="waves-effect waves-light btn-large PC_addPackage">Add package</Link>
                     </div>
                 </div>
             </div>

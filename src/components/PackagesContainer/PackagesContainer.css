@@ -21,3 +21,13 @@
     border-right: solid 1px gray;
 }
 
+.PC_addPackage{
+    margin-top: 5rem;
+    background-color: greenyellow;
+    font-weight: bold;
+}
+
+
+.PC_addPackage:hover{
+    background-color: greenyellow;
+}

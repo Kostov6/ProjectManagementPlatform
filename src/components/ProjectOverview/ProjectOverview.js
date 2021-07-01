@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
+import M from 'materialize-css'
 import './ProjectOverview.css'
-import M from '../../../public/js/materialize'
+import ProjectSidenav from '../ProjectSidenav/ProjectSidenav';
+import { react } from '@babel/types';
 
 export default class ProjectOverview extends Component {
+
     handleInvite = (event) => {
         console.log("invite initialie")
     }
 
     handleStarred = (event) => {
         console.log("star initialie")
+        fetch("http://localhost:3001/test")
+            .then(res => res.json())
+            .then(data => console.log(data));
     }
 
     handleSidenavOpen = () => {
@@ -19,26 +26,31 @@ export default class ProjectOverview extends Component {
 
     render() {
         return (
+            <React.Fragment>
             <nav>
                 <div className="nav-wrapper">
-                <button onClick={handleSidenavOpen}>Test</button>
-                <a href="#" className="brand-logo">Project name</a>
+                <a href="#" className="brand-logo">{this.props.match.params.project}</a>
+                <ul id="nav-mobile" className="left hide-on-med-and-down">
+                    <li><a><i className="material-icons PO_sidebar" onClick={this.handleSidenavOpen}>menu</i></a></li>
+                </ul>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
-                    
-                    <li><i className="material-icons ProjectOverview_star" onClick={this.handleStarred}>star_border</i></li>
+                    <li><Link to={`/home/dashboard/${this.props.match.params.project}/packagesContainer`}><i className="material-icons PO_packageView" >assignment</i></Link></li>
+                    <li><Link to={`/home/dashboard/${this.props.match.params.project}/tasksContainer`}><i className="material-icons PO_taskView">assignment_turned_in</i></Link></li>
+                    <li><Link to={`/home/dashboard/${this.props.match.params.project}/taskAdd`}><i className="material-icons PO_taskAdd">library_add</i></Link></li>
+                    <li><a><i className="material-icons ProjectOverview_star" onClick={this.handleStarred}>star_border</i></a></li>
                     <li>
                         <div className=" input-field col s12">
                             <i className="material-icons prefix inviteButton" onClick={this.handleInvite}>group_add</i>
-                            <input id="icon_prefix" type="text" className="validate" />
-                            <label htmlFor="icon_prefix"></label>
+                            <input id="inviteField" type="text" className="validate" />
+                            <label htmlFor="inviteField"></label>
                         </div>
                     </li>
                     <li>
                         <div className="Participants-chip-container">
                         {
-                            this.props.participants.map(participant => (
+                            (this.props.participants || ["Penchi","Cho4i"] ).map(participant => (
                                 <div key={participant} className="Task-card-chip chip">
-                                    <img src="img/yuna.jpg" alt="Contact Person" />
+                                    <img src={`${process.env.PUBLIC_URL}/img/yuna.jpg`} alt="Contact Person" />
                                     <span>{participant}</span>
                                 </div>
                             ))
@@ -51,7 +63,7 @@ export default class ProjectOverview extends Component {
                 </ul>
                 </div>
           </nav>
-          
+          </React.Fragment>
         )
     }
 }

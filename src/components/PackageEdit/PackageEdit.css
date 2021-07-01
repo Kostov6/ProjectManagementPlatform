@@ -1,3 +1,7 @@
+.TaskEdit_outerContainer{
+    display: flex;
+    justify-content: center;
+}
 .PackageEdit-h1{
     margin: 0rem;
     margin-bottom: 2rem;

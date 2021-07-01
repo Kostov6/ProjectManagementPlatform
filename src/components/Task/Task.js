@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import PropTypes from 'prop-types'
 import './Task.css'
 
@@ -7,7 +8,7 @@ function Task({taskId, descr, title, deadline, subtasks, onTaskClick, subtaskOrd
         <div className="Task-card card">
 
             <div className="card-content waves-effect waves-block waves-light">
-                <span className="card-title grey-text text-darken-4">{title}<i className="material-icons right activator">more_vert</i></span>
+                <span className="card-title grey-text text-darken-4">{title}<Link to="/taskEdit"><i className="material-icons right activator">more_vert</i></Link></span>
                 <p>{descr}</p>
 
                 { subtaskOrdered ? 
@@ -26,13 +27,13 @@ function Task({taskId, descr, title, deadline, subtasks, onTaskClick, subtaskOrd
                     {
                         participants.map(participant => (
                             <div key={participant.name} className={`Task-card-chip ${participant.voted?"Task-completed-by":""} chip`}>
-                                <img src="img/office.jpg" alt="Contact Person" />
+                                <img src={`${process.env.PUBLIC_URL}/img/office.jpg`} alt="Contact Person" />
                                 <span >{participant.name}</span>
                             </div>
                         ))
                     }
                     <div className="Task-card-chip Task-completed-by chip">
-                        <img src="img/yuna.jpg" alt="Contact Person" />
+                        <img src={`${process.env.PUBLIC_URL}/img/yuna.jpg`} alt="Contact Person" />
                         <span >Wiktor Kostovv</span>
                         
                     </div>
@@ -52,10 +53,6 @@ function Task({taskId, descr, title, deadline, subtasks, onTaskClick, subtaskOrd
                     })()}`} ><i className="material-icons right">send</i>Next</button>
                 </div>
 
-            </div>
-            <div className="card-reveal">
-                <span className="card-title grey-text text-darken-4">More info<i className="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
             </div>
         </div>
     )
