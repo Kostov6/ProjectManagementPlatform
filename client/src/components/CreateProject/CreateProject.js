@@ -35,7 +35,7 @@ export default class CreateProject extends Component {
 
     handleCreateProject = async (event) => {
         const bodyData = {
-            projectTitle : this.state.projectTitle,
+            project : this.state.projectTitle,
             participants: this.state.participants
         } 
         POST('http://localhost:3001/api/projects/newProject',bodyData);

@@ -16,7 +16,7 @@ export default class TasksContainer extends Component {
         const fetchPackages = async () => {
             const owner = this.props.match.params.owner;
             const project = this.props.match.params.project
-            const result = await fetch(`http://localhost:3001/api/tasks/all`)
+            const result = await fetch(`http://localhost:3001/api/tasks/all/${owner}/${project}`)
             const resultData = await result.json()
             this.setState({taskList: resultData, owner, project})
         }

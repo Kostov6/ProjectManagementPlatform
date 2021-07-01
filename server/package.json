@@ -1,0 +1,27 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "An algorithm visualizer and tester",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kostov6/JSProject.git"
+  },
+  "author": "Viktor Kostov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kostov6/JSProject/issues"
+  },
+  "homepage": "https://github.com/Kostov6/JSProject#readme"
+}
