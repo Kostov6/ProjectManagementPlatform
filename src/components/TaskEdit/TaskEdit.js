@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { getAllByText } from '@testing-library/react'
 import "./TaskEdit.css"
+import { POST } from '../../util/fetchUtil'
 
 export default class TaskEdit extends Component {
     /*
@@ -15,8 +16,34 @@ export default class TaskEdit extends Component {
         taskDescr: this.props.taskDescr,
         participants: this.props.participants,
         allUsers: this.props.allUsers,
-        subTasks: this.props.subTasks
+        subTasks: this.props.subTasks,
+        owner: this.props.owner,
+        project: this.props.project,
+        taskId: ""
     }
+
+    
+    componentDidMount(){
+        if(this.props.match)
+            this.setState({taskId: this.props.match.params.taskId})
+    }
+/*
+    componentDidMount(){
+        const fetchPackages = async () => {
+            if(this.props.match){
+                this.setState({owner: this.props.match.params.owner, project: this.props.match.params.project})
+                const packageId = this.props.match.params.packageId;
+                const result = await fetch(`http://localhost:3001/api/packages/get/${packageId}`)
+                const resultData = await result.json()
+                const {packageTitle, packageStartDate, packageEndDate} = resultData
+                this.setState({ packageTitle, packageStartDate, packageEndDate})
+            }
+
+        }
+        
+        fetchPackages();
+    }
+    */
 
     handleInputChange = (event) => {
         const target = event.target;
@@ -59,6 +86,15 @@ export default class TaskEdit extends Component {
         }))
     }
 
+    onTaskAdd = () =>{
+        console.log(this.state)
+        POST("http://localhost:3001/api/tasks/add",this.state)
+    }
+
+    onTaskDelete = () =>{
+        POST(`http://localhost:3001/api/tasks/delete/${this.state.taskId}`,this.state)
+    }
+
     render() {
         return (        
         <div className="TaskEdit_outerContainer">
@@ -85,7 +121,7 @@ export default class TaskEdit extends Component {
                         <div className="input-field col s12 TaskEdit-subtaskHeader">
                             <h5 className="TaskEdit-subtaskHeader">Subtasks:</h5>   
                             {
-                                this.state.subTasks.map(subTask => (
+                                (this.state.subTasks || []).map(subTask => (
                                     <div key={subTask}>
                                         <i subtask={subTask} className="material-icons TaskEdit-removeSubtask" onClick={this.handleRemoveSubtask}>delete</i>
                                         <span>{subTask}</span>
@@ -101,7 +137,7 @@ export default class TaskEdit extends Component {
                         </div>
 
                         {
-                            this.state.allUsers.map((user,index) => 
+                            (this.state.allUsers || []).map((user,index) => 
                                 (
                                     <div key={user} className="input-field col s6" >
                                         <label>
@@ -119,14 +155,14 @@ export default class TaskEdit extends Component {
 
                 <div className="row">
                 {
-                    this.props.type === "Edit task" ? (
-                        <div className="input-field col s12">
-                            <a className="waves-effect waves-light btn">Add</a>
-                        </div>
-                    ) : (
+                    this.props.type !== "Add task" ? (
                         <div className="input-field col s12">
                             <a className="waves-effect waves-light btn">Edit</a>
-                            <a className="waves-effect waves-light btn red TaskEdit_delete">Delete</a>
+                            <a onClick={this.onTaskDelete}className="waves-effect waves-light btn red TaskEdit_delete">Delete</a>
+                        </div>   
+                    ) : (
+                        <div className="input-field col s12">
+                            <a onClick={this.onTaskAdd}className="waves-effect waves-light btn">Add</a>
                         </div>
                     )
                 }

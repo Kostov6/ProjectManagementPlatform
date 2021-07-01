@@ -5,8 +5,21 @@ import "./PackagesContainer.css"
 import Package from '../Package/Package'
 
 export default class PackagesContainer extends Component {
-    static propTypes = {
-        prop: PropTypes
+
+    state = {
+        packages : []
+    }
+
+    componentDidMount(){
+        const fetchPackages = async () => {
+            const owner = this.props.match.params.owner;
+            const project = this.props.match.params.project
+            const result = await fetch(`http://localhost:3001/api/packages/all/${owner}/${project}`)
+            const resultData = await result.json()
+            this.setState({packages: resultData})
+        }
+        
+        fetchPackages();
     }
 
     render() {
@@ -29,12 +42,17 @@ export default class PackagesContainer extends Component {
                         <div>Dec</div>
                     </div>
                     <div>
-                        <Link to="/packageEdit"><Package title="Package #1" startDateString="1 Feb 2021" endDateString="31 Mar 2021"/></Link>
-                        <Package title="Package #2" startDateString="15 Mar 2021" endDateString="15 Aug 2021"/>
-                        <Package title="Package #3" startDateString="1 Apr 2021" endDateString="10 Jun 2021"/>
+                        {
+                            this.state.packages.map(packageEl => (
+                                <Link to={`/home/dashboard/${this.props.match.params.owner}/${this.props.match.params.project}/packageEdit/${packageEl._id}`}>
+                                    <Package id={packageEl._id} title={packageEl.packageTitle} startDateString={packageEl.packageStartDate} endDateString={packageEl.packageEndDate}/>
+                                </Link>
+                            ))
+                        }
+
                     </div>
                     <div className="PackagesContainer-outerContainer">
-                        <Link to="/packageAdd" className="waves-effect waves-light btn-large PC_addPackage">Add package</Link>
+                        <Link to={`/home/dashboard/${this.props.match.params.owner}/${this.props.match.params.project}/packageAdd`} className="waves-effect waves-light btn-large PC_addPackage">Add package</Link>
                     </div>
                 </div>
             </div>

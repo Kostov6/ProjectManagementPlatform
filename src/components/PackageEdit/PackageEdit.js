@@ -1,12 +1,32 @@
 import React, { Component } from 'react'
 import './PackageEdit.css'
 import {POST} from '../../util/fetchUtil'
+import { Link } from 'react-router-dom'
+
 export default class PackageEdit extends Component {
 
     state = {
-        packageTitle: this.props.packageTitle,
-        packageStartDate: this.props.packageStartDate,
-        packageEndDate: this.props.packageEndDate
+        packageTitle: "",
+        packageStartDate: new Date().toDateString().split(" ").slice(1).toString().replaceAll(',',' '),
+        packageEndDate: "",
+        owner: this.props.owner,
+        project: this.props.project
+    }
+
+    componentDidMount(){
+        const fetchPackages = async () => {
+            if(this.props.match){
+                this.setState({owner: this.props.match.params.owner, project: this.props.match.params.project})
+                const packageId = this.props.match.params.packageId;
+                const result = await fetch(`http://localhost:3001/api/packages/get/${packageId}`)
+                const resultData = await result.json()
+                const {packageTitle, packageStartDate, packageEndDate} = resultData
+                this.setState({ packageTitle, packageStartDate, packageEndDate})
+            }
+
+        }
+        
+        fetchPackages();
     }
 
     handleInputChange = (event) => {
@@ -21,19 +41,23 @@ export default class PackageEdit extends Component {
     }
 
     onPackageAdd = (event) => {
-        const bodyData = {
-            projectTitle : this.state.projectTitle,
-            participants: this.state.participants
-        } 
-        //POST(`http://localhost:3001/api/packages/add/${}`,bodyData);
+        const owner = this.props.owner;
+        const project = this.props.project
+        const { packageTitle, packageStartDate, packageEndDate } = this.state
+        const bodyData = { packageTitle, packageStartDate, packageEndDate, project, owner }
+        POST(`http://localhost:3001/api/packages/add/`,bodyData);
     }
 
     onPackageEdit = (event) => {
+        const packageId = this.props.match.params.packageId;
+        const bodyData = this.state
+        POST(`http://localhost:3001/api/packages/update/${packageId}`, bodyData);
 
     }
 
     onPackageDelete = (event) => {
-        
+        const packageId = this.props.match.params.packageId;
+        POST(`http://localhost:3001/api/packages/delete/${packageId}`,{});
     }
 
     render() {
@@ -64,12 +88,12 @@ export default class PackageEdit extends Component {
                         {
                             this.props.type === "Add package" ? (
                                 <div className="input-field col s12">
-                                    <a className="waves-effect waves-light btn" onClick={this.onPackageAdd}>Add</a>
+                                    <Link to={`/home/dashboard/${this.state.owner}/${this.state.project}/packagesContainer`} className="waves-effect waves-light btn" onClick={this.onPackageAdd}>Add</Link>
                                 </div>
                             ) : (
                                 <div className="input-field col s12">
-                                    <a className="waves-effect waves-light btn" onClick={this.onPackageEdit}>Edit</a>
-                                    <a className="waves-effect waves-light btn red PackageEdit_delete" onClick={this.onPackageDelete}>Delete</a>
+                                    <Link to={`/home/dashboard/${this.state.owner}/${this.state.project}/packagesContainer`} className="waves-effect waves-light btn" onClick={this.onPackageEdit}>Edit</Link>
+                                    <Link to={`/home/dashboard/${this.state.owner}/${this.state.project}/packagesContainer`} className="waves-effect waves-light btn red PackageEdit_delete" onClick={this.onPackageDelete}>Delete</Link>
                                 </div>
                             )
                         }

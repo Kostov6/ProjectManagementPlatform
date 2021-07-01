@@ -43,27 +43,23 @@ export default function App() {
                 <Route path="/home/empty/createProject">
                     <CreateProject />
                 </Route>
-                <Route path="/home/dashboard/:project" component={ProjectOverview}></Route>
+                <Route path="/home/dashboard/:owner/:project" component={ProjectOverview}></Route>
 
-                <Route path="/home/dashboard/:project/taskAdd" component={AddTask}></Route>
-                <Route path="/home/dashboard/:project/taskEdit">
-                    <TaskEdit taskTitle="First todo" taskDescr="Todo 1" taskDeadline="5 April 2021" allUsers={["TheChosen","BaiIvan","Peshko","Goiko","Pi4a96"]} participants={[true,false,false,false,false]} subTasks={["A","B","C"]}/>
+                <Route path="/home/dashboard/:owner/:project/taskAdd" component={AddTask}></Route>
+                <Route path="/home/dashboard/:owner/:project/taskEdit/:taskId" component={TaskEdit}>
                 </Route>
-                <Route path="/home/dashboard/:project/packageAdd">
+                <Route path="/home/dashboard/:owner/:project/packageAdd">
                     <PackageAdd /></Route>
-                <Route path="/home/dashboard/:project/packageEdit">
-                    <PackageEdit packageTitle="Initializing" packageStartDate="1 Apr 2021" packageEndDate="10 Sep 2021"/>
+                <Route path="/home/dashboard/:owner/:project/packageEdit/:packageId" component={PackageEdit} />
+                <Route path="/home/dashboard/:owner/:project/packagesContainer" component={PackagesContainer} />
+
+                <Route path="/home/dashboard/:owner/:project/tasksContainer" component={TasksContainer}>
+                
                 </Route>
-                <Route path="/home/dashboard/:project/packagesContainer">
-                    <PackagesContainer />
-                </Route>
-                <Route path="/home/dashboard/:project/tasksContainer">
-                    <TasksContainer />
-                </Route>
-                <Route path="/home/dashboard/:project/acceptInvite/:inviter">
+                <Route path="/home/dashboard/:owner/:project/acceptInvite/">
                     <InviteHandle inviter="Goiko" project="CoolProject" />
                 </Route>
-                <Route path="/home/dashboard/:project/createProject">
+                <Route path="/home/dashboard/:owner/:project/createProject">
                     <CreateProject />
                 </Route>
             </Router>

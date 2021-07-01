@@ -64,14 +64,14 @@ export default function ProjectSidenav() {
                 <li><Link to="/home/empty/createProject" onClick={closeSidenav}><i className="material-icons">add</i>Create a new project</Link></li>
                 {
                     projects.map(project => (
-                        <li key={project}><Link  to={`/home/dashboard/${project.split(" by ")[0]}`} onClick={closeSidenav}>{project}</Link></li>
+                        <li key={project}><Link  to={`/home/dashboard/${project.split(" by ")[1]}/${project.split(" by ")[0]}`} onClick={closeSidenav}>{project}</Link></li>
                     ))
                 }
                 <li><div className="divider"></div></li>
                 <li><a className="subheader">Invitations</a></li>
                 {
                     invites.map(invite => (
-                        <li key={invite}><Link to={`/home/dashboard/${invite.split(" by ")[0]}/acceptInvite/${invite.split(" by ")[1]}`} onClick={closeSidenav}>{invite}</Link></li>
+                        <li key={invite}><Link to={`/home/dashboard/${invite.split(" by ")[1]}/${invite.split(" by ")[0]}/acceptInvite/${invite.split(" by ")[1]}`} onClick={closeSidenav}>{invite}</Link></li>
                     ))
                 }
             </ul>

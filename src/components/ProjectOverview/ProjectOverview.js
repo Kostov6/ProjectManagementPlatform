@@ -34,17 +34,11 @@ export default class ProjectOverview extends Component {
                     <li><a><i className="material-icons PO_sidebar" onClick={this.handleSidenavOpen}>menu</i></a></li>
                 </ul>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
-                    <li><Link to={`/home/dashboard/${this.props.match.params.project}/packagesContainer`}><i className="material-icons PO_packageView" >assignment</i></Link></li>
-                    <li><Link to={`/home/dashboard/${this.props.match.params.project}/tasksContainer`}><i className="material-icons PO_taskView">assignment_turned_in</i></Link></li>
-                    <li><Link to={`/home/dashboard/${this.props.match.params.project}/taskAdd`}><i className="material-icons PO_taskAdd">library_add</i></Link></li>
+                    <li><Link to={`/home/dashboard/${this.props.match.params.owner}/${this.props.match.params.project}/packagesContainer`}><i className="material-icons PO_packageView" >assignment</i></Link></li>
+                    <li><Link to={`/home/dashboard/${this.props.match.params.owner}/${this.props.match.params.project}/tasksContainer`}><i className="material-icons PO_taskView">assignment_turned_in</i></Link></li>
+                    <li><Link to={`/home/dashboard/${this.props.match.params.owner}/${this.props.match.params.project}/taskAdd`}><i className="material-icons PO_taskAdd">library_add</i></Link></li>
                     <li><a><i className="material-icons ProjectOverview_star" onClick={this.handleStarred}>star_border</i></a></li>
-                    <li>
-                        <div className=" input-field col s12">
-                            <i className="material-icons prefix inviteButton" onClick={this.handleInvite}>group_add</i>
-                            <input id="inviteField" type="text" className="validate" />
-                            <label htmlFor="inviteField"></label>
-                        </div>
-                    </li>
+                    
                     <li>
                         <div className="Participants-chip-container">
                         {
@@ -57,7 +51,6 @@ export default class ProjectOverview extends Component {
                         }
                         </div>
                     </li>
-                    <li>+16</li>
 
                    
                 </ul>

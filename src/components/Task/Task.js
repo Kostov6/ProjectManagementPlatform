@@ -2,22 +2,36 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types'
 import './Task.css'
+import { getLoggedUser } from '../../util/login';
 
-function Task({taskId, descr, title, deadline, subtasks, onTaskClick, subtaskOrdered, nextPhase, participants}) {
+function Task({taskId, descr, title, deadline, subtasks, onTaskClick, stage, participants, owner, project}) {
+    function getNextPhase(){
+        //check if user has voted for this task
+        const loggedUser = getLoggedUser();
+        const item = participants.filter(user => user.name === loggedUser)
+        if(item.length > 0 && item[0].voted){
+            //console.log(participants.filter(user => user.name === loggedUser))
+            return -1
+        }
+        if(subtasks){
+            const willProceed = subtasks.reduce((acc, subtask) => acc && (subtask.stage > stage), true)
+            if(!willProceed)
+                return -1;
+        }
+        return stage;
+    }
+
     return (
         <div className="Task-card card">
 
             <div className="card-content waves-effect waves-block waves-light">
-                <span className="card-title grey-text text-darken-4">{title}<Link to="/taskEdit"><i className="material-icons right activator">more_vert</i></Link></span>
+                <span className="card-title grey-text text-darken-4">{title}<Link to={`/home/dashboard/${owner}/${project}/taskEdit/${taskId}`}><i className="material-icons right activator">more_vert</i></Link></span>
                 <p>{descr}</p>
 
-                { subtaskOrdered ? 
+                {
                     (<ol>
-                        { subtasks && subtasks.map(subtask => (<li key={subtask.id} className={`Task-${subtask.status}`}>{subtask.title}</li>)) }
-                    </ol>) : 
-                    (<ul>
-                        { subtasks && subtasks.map(subtask => (<li key={subtask.id} className={`Task-${subtask.status}`}>{subtask.title}</li>)) }
-                    </ul>)
+                        { subtasks && subtasks.map(subtask => (<li key={subtask.id} className={`Task-${stage < subtask.stage ? "done" : "todo"}`}>{subtask.title}</li>)) }
+                    </ol>)
                 }
                 
                 <div className={new Date(deadline) < new Date() ? "Task-deadline Task-deadlineBreached" : "Task-deadline"}>
@@ -32,25 +46,20 @@ function Task({taskId, descr, title, deadline, subtasks, onTaskClick, subtaskOrd
                             </div>
                         ))
                     }
-                    <div className="Task-card-chip Task-completed-by chip">
-                        <img src={`${process.env.PUBLIC_URL}/img/yuna.jpg`} alt="Contact Person" />
-                        <span >Wiktor Kostovv</span>
-                        
-                    </div>
 
                 </div>
                 <div className="Task-buttonRow">
                     <button onClick={onTaskClick} taskid={taskId} className={`waves-effect waves-light btn-small ${ (() => {
-                        switch (nextPhase){
-                            case "unmetConditions":
+                        switch (getNextPhase()){
+                            case -1:
                                 return "disabled";
-                            case "underWork":
+                            case 0:
                                 return "orange";
-                            case "done":
+                            case 1:
                                 return "";
                             default: return "Task-next-done";
                         }
-                    })()}`} ><i className="material-icons right">send</i>Next</button>
+                    })()}`} ><i className="material-icons right" >send</i>Next</button>
                 </div>
 
             </div>

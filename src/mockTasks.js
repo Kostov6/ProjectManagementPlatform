@@ -1,17 +1,24 @@
 
-const mockTasks = {
-    todo: [
+const mockTasks = [
+    
         {
             id: 1,
             descr: "Todo 1",
             title: "First todo",
             deadline: "5 April 2021",
-            nextPhase: "underWork",
+            stage: 0,
             participants: [
                 {
                     name: "Peshko",
                     voted: true
                 }
+            ],
+            subtasks: [                {
+                id: 4,
+                title: "Task 4",
+                stage: 1
+            }
+
             ]
         },
         {
@@ -19,41 +26,39 @@ const mockTasks = {
             descr: "Descr 3",
             title: "Todo 2",
             deadline: "28 April 2021",
+            stage: 0,
             subtasks: [
 
                 {
                     id: 2,
                     title: "Task 2",
-                    status: "done"
+                    stage: 2,
                 },
                 {
                     id: 4,
                     title: "Task 4",
-                    status: "underWork"
+                    stage: 1,
                 },
                 {
                     id: 1,
                     title: "First todo",
-                    status: "todo"
+                    stage: 0,
                 }
             ],
-            subtaskOrdered: true,
-            nextPhase: "unmetConditions",
             participants: [
                 {
                     name: "Peshko",
                     voted: false
                 }
             ]
-        }
-    ],
-    underWork: [
+        },
         {
             id: 4,
             descr: "Descr 4",
             title: "Task 4",
             deadline: "8 April 2021",
-            nextPhase: "done",
+            stage: 1,
+            subtasks: [],
             participants: [
                 {
                     name: "Peshko",
@@ -66,35 +71,33 @@ const mockTasks = {
             descr: "Descr 5",
             title: "Task 5",
             deadline: "29 April 2021",
+            stage: 1,
             subtasks:[
                 {
                     id: 4,
                     title: "Task 4",
-                    status: "underWork"
+                    stage: 1,
                 },
                 {
                     id: 2,
                     title: "Task 2",
-                    status: "done"
+                    stage: 2,
                 }
             ],
-            subtaskOrdered: false,
-            nextPhase: "unmetConditions",
             participants: [
                 {
                     name: "Peshko",
                     voted: false
                 }
             ]
-        }
-    ],
-    done: [
+        },
         { 
             id: 2, 
             descr: "Descr 2", 
             title: "Task 2", 
             deadline: "6 April 2021",
-            nextPhase: "end",
+            stage: 2,
+            subtasks: [],
             participants: [
                 {
                     name: "Peshko",
@@ -102,8 +105,7 @@ const mockTasks = {
                 }
             ]
         }
-    ]
 
-};
+];
 
 export default mockTasks;
